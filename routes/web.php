@@ -190,3 +190,5 @@ Route::get('/test2', function () {
 Route::get('/', function () {
     return view('welcome');
 });
+
+
