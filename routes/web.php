@@ -187,6 +187,20 @@ Route::get('/test2', function () {
     </html>';
 });
 
+// Route::get('/greeting', function () {
+//     return 'Nice to see you!';
+// });
+
+// Route::get('/anotherView', function () {
+//     return view('anotherView');
+// });
+Route::get('/admin', [App\Http\Controllers\Admin\CategoryController::class, 'index'])
+->name('admin::index');
+Route::match(['get', 'post'],'/admin/category/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])
+->name('admin::category::create');
+
+Route::get('/categoryNews', [App\Http\Controllers\MainController::class, 'index']);
+
 Route::get('/', function () {
     return view('welcome');
 });
