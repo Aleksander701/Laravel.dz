@@ -139,6 +139,15 @@
                     </div>
                 </div>
                 </div> -->
+                body {
+                font-family: 'Nunito', sans-serif;
+            }
+            a {
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+    <body class="antialiased">
 
 <header> 
     Good news, my friends! It's header
