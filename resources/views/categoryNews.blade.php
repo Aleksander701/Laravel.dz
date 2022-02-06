@@ -18,3 +18,10 @@ News not found!
 
 
 @endsection 
+@section('content')
+
+<form action="{{route('admin::category::create')}}" method="post">
+    @csrf
+    <label class="form-label">
+        Название категории
+    </label>
