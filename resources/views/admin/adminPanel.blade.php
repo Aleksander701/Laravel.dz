@@ -5,6 +5,10 @@
     <br>
     <a href="{{ route('admin::news::create')}}"> Создать новость </a>
     <br>
+    <a href="{{ route('admin::profile')}}"> Редактировать профиль </a>
+    <br>
+    <a href="{{ route('admin::user')}}"> Управление юзерами </a>
+    <br>
 @endsection
 
 

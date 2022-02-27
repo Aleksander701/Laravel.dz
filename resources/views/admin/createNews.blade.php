@@ -41,14 +41,14 @@
         {{ __('tagsHtml.title') }}
     </label>
     <div class="form-group">
-        <input type="text" class="title" name ="title" style="border: 2px solid black;">
-
+        <input value="{{ old('title', isset($news) ? $news->title : null) }}" type="text" class="title" name ="title" style="border: 2px solid black;">
+        
     </div>
     <label class="form-label">
     {{ __('tagsHtml.content') }}
     </label>
     <div class="form-group">
-        <textarea class="content" name="content" style="border: 2px solid black;"></textarea>
+        <textarea value="{{ old('content', isset($news) ? $news->content : null) }}" class="content" name="content" style="border: 2px solid black;"></textarea>
     </div>
     <div class="form-group">
         <button type="submit" name ="Save" value="Save">
@@ -58,3 +58,5 @@
     </div>
 
 </form>
+
+@endsection

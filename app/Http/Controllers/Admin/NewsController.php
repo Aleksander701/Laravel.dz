@@ -1,3 +1,7 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
 use App\Models\News;
 
 use App\Models\Category;
@@ -13,7 +17,8 @@ class NewsController extends BaseController
 
     public function index ()
     {
-	@@ -20,8 +22,18 @@ public function index ()
+        $news = News::all();
+        // dd($news);
         return view('admin/adminPanel', ['news' => $news]);
     }
 
@@ -32,10 +37,38 @@ class NewsController extends BaseController
         $news = new News ();
         if($request->isMethod('post')) {
         // dd($request);
-	@@ -34,6 +46,7 @@ public function create (Request $request)
+        $news->fill($request->all());
+        $news->save();
+        return redirect()->route('admin::index');
+        }
+
+        return view('admin/createNews', [
             'news' => $news,
             'route' => 'admin::news::create',
             'title' => 'Добавление новости',
             'categories' => $category->getList(),
         ]);
     }
+
+    public function update (Request $request, News $news, Category $category)
+    {
+        if( $request->isMethod('post'))
+        {
+            $news->update($request->only(['title', 'content']));
+            return redirect()->route('admin::index');
+        }
+       
+        return view('admin.createNews', [
+                     'news' => $news,
+                     'route' => 'admin::news::update',
+                     'title' => 'Изменить новость',
+                     'categories' => $category->getList(),
+                 ]);
+    }
+
+    public function delete (News $news)
+    {
+       $news->delete();
+       return redirect()->route('admin::index');
+    }
+}
