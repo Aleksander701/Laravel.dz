@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/admin', [App\Http\Controllers\Admin\NewsController::class, 'index'])
 ->name('admin::index');
@@ -36,7 +36,8 @@ Route::match(['get', 'post'], '/admin/user/create', [App\Http\Controllers\Admin\
 Route::match(['get', 'post'], '/admin/user/update/{user}', [App\Http\Controllers\Admin\UserController::class, 'update'])
 ->name('admin::user::update');
 
-
+Route::get('/admin/parser', ['App\Http\Controllers\Admin\ParserController', 'index'])
+    ->name('admin::parser');
 
 
 Route::match(['get', 'post'],'/admin/category/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])
@@ -50,3 +51,14 @@ Route::get('/categoryNews/{id}', [App\Http\Controllers\MainController::class, 's
 
 Route::get('/authorization', [App\Http\Controllers\AuthController::class, 'index']);
 
+
+
+Route::group([
+    'prefix' => 'social',
+    'as' => 'social::',
+], function () {
+    Route::get('/login', [SocialController::class, 'loginVk'])
+        ->name('login-vk');
+    Route::get('/response', [SocialController::class, 'responseVk'])
+        ->name('response-vk');
+});
