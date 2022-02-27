@@ -7,7 +7,7 @@ use Illuminate\Routing\Controller as BaseController;
 
 class CategoryController extends BaseController
 {
-
+    
 
     public function index (Category $category)
     {
@@ -23,6 +23,6 @@ class CategoryController extends BaseController
 
     public function delete ()
     {
-
+       
     }
 }

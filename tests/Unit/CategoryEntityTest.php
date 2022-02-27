@@ -17,4 +17,4 @@ class CategoryEntityTest extends TestCase
         $data = $objects->getNewsCategory();
         $this->assertIsArray($data);
     }
-} 
+}
