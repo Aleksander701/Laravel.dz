@@ -26,5 +26,23 @@ class ParserController extends Controller
             $news->save();
         }
         echo 'Данные сохранены';
+
+        $news = News::all();
+        return view('admin.parser', ['news' => $news]);
+    }
+
+    public function update (Request $request, News $news)
+    {
+        if ($request->isMethod('post'))
+        {
+            $news->update($request->only(['title', 'content']));
+            return redirect()->route('admin::parser');
+        }
+       
+        return view('admin.updateApiNews', [
+                     'news' => $news,
+                     'route' => 'admin::parser::update',
+                     'title' => 'Изменить новость',
+                 ]);
     }
 }

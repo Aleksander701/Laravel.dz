@@ -36,8 +36,13 @@ Route::match(['get', 'post'], '/admin/user/create', [App\Http\Controllers\Admin\
 Route::match(['get', 'post'], '/admin/user/update/{user}', [App\Http\Controllers\Admin\UserController::class, 'update'])
 ->name('admin::user::update');
 
-Route::get('/admin/parser', ['App\Http\Controllers\Admin\ParserController', 'index'])
+Route::get('/admin/parser', [App\Http\Controllers\Admin\ParserController::class, 'index'])
     ->name('admin::parser');
+Route::match(['get', 'post'], '/admin/parser/update/{news}', [App\Http\Controllers\Admin\ParserController::class, 'update'])
+->name('admin::parser::update');
+
+Route::get('/admin/redis/parser', [App\Http\Controllers\Admin\RedisParserController::class, 'index'])
+    ->name('admin::redis::parser');
 
 
 Route::match(['get', 'post'],'/admin/category/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])
